@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const LoginForm = () => {
     return (<>
@@ -29,7 +30,7 @@ const LoginForm = () => {
                 </form>
             </div>
             <div className='w-full mt-7 flex justify-center items-center'>
-                <button className='w-64 md:w-96 bg-gradient-to-r rounded-xl text-lg py-1 from-sky-300 via-sky-600 to-sky-800' >Connexion</button>
+                <button className='w-64 md:w-96 bg-gradient-to-r rounded-xl text-lg py-1 from-sky-300 via-sky-600 to-sky-800' ><Link to="/room">Connexion</Link></button>
             </div>
         </div>
     </>);
