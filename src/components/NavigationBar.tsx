@@ -1,6 +1,7 @@
 import React from "react";
 
-const NavigationBar : React.FC = () => {
+const NavigationBar : React.FC <{linkOne:string,linkTwo:string,buttonText:string}> = (props) => {
+    const {linkOne,linkTwo,buttonText} = props;
     return(<>
 
         <header>
@@ -8,10 +9,10 @@ const NavigationBar : React.FC = () => {
                 <div className={"ml-3"} >logo</div>
                 <div className={"flex flex-row gap-10 items-center"} >
                     <ul className={"flex flex-row gap-5"} >
-                        <li>Nos offres</li>
-                        <li>À propos de nous</li>
+                        <li>{linkOne}</li>
+                        <li>{linkTwo}</li>
                     </ul>
-                    <button className={"mr-3 text-center bg-gradient-to-r from-sky-400 via-sky-500 to-sky-700 rounded-full p-1.5"}>Se connecter</button>
+                    <button className={"mr-3 text-center bg-gradient-to-r from-sky-400 via-sky-500 to-sky-700 rounded-full p-1.5"}>{buttonText}</button>
                 </div>
             </nav>
         </header>
