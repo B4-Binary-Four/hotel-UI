@@ -19,16 +19,16 @@ const RoomDashboard: React.FC<Props> = ({data, getValue}) => {
                         Description
                     </Table.HeadCell>
                     <Table.HeadCell scope="col" className="px-6 py-3">
-                        Status
+                        Statut
                     </Table.HeadCell>
                     <Table.HeadCell scope="col" className="px-6 py-3">
-                        Categoryname
+                        Categorie
                     </Table.HeadCell>
                     <Table.HeadCell scope="col" className="px-6 py-3">
-                        Price
+                        Prix
                     </Table.HeadCell>
                     <Table.HeadCell scope="col" className="px-6 py-3">
-                        BookingAccount
+                        Nombre de reservations
                     </Table.HeadCell>
                     <Table.HeadCell scope="col" className="px-6 py-3">
       <span className="sr-only">
@@ -63,7 +63,7 @@ const RoomDashboard: React.FC<Props> = ({data, getValue}) => {
                                         className="font-medium text-blue-600 hover:underline dark:text-blue-500"
                                         onClick={getValue}
                                     >
-                                        Edit
+                                        Changer
                                     </a>
                                 </Table.Cell>
                             </Table.Row>
