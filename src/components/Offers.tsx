@@ -4,8 +4,8 @@ import Card from "./Card";
 
 const Offers : React.FC = () => {
     return (<>
-        <section className={"w-full mt-3.5"} id="offers">
-            <div className={"text-center uppercase text-2xl"} >Nos offres</div>
+        <section className={"w-full mt-6"} id="offers">
+            <div className={"text-center uppercase text-xl md:text-2xl"} >Nos offres</div>
             <div className={"items-center flex flex-col md:flex-row md:justify-evenly"} >
                 <Card title={"chambre double"} description={"Equipée d'un lit double place, de Canalsat et d'eau chaude"} price={250_000} reduction={100_000}/>
                 <Card title={"chambre familiale"} description={"Equipée de 2 lits double place, de Canalsat et d'eau chaude"} price={350_000} reduction={200_000}/>

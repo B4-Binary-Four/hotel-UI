@@ -97,7 +97,7 @@ const RoomPage : React.FC = () => {
     }
 
     return(<>
-        <div className={"min-w-full min-h-screen bg-gradient-to-b from-sky-700 via-sky-500 to-sky-300"} >
+        <div className={"min-w-full min-h-screen bg-white"} >
             <div className={"mb-5"}>
             <NavigationBar page={"/booking_list"} linkOne={"Liste des reservations"} buttonText={"Se déconnecter"} redirectPath={"/"}/>
             </div>
