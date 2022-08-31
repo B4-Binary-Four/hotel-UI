@@ -6,9 +6,9 @@ const NavigationBar : React.FC <{linkOne:string,linkTwo?:string,buttonText:strin
     return(<>
 
         <header>
-            <nav className={"w-full text-white py-2 flex justify-between shadow-2xl rounded-sm items-center bg-gradient-to-r from-sky-500 via-sky-600 to-sky-900"} >
-                <div className={"ml-3"} >logo</div>
-                <div className={"flex flex-row gap-10 items-center"} >
+            <nav className={"w-full md:text-lg text-sm text-white py-2 flex justify-between shadow-lg rounded-sm items-center bg-gradient-to-r from-sky-500 via-sky-600 to-sky-900"} >
+                <div className={"ml-1 md:ml-3"} >logo</div>
+                <div className={"flex flex-row gap-4 md:gap-10 items-center"} >
                     <ul className={"flex flex-row gap-5"} >
                         <li><Link to={page}>{linkOne}</Link></li>
                         <li>{linkTwo}</li>
