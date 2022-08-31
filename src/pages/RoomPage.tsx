@@ -103,7 +103,6 @@ const RoomPage : React.FC = () => {
             </div>
             <div className="flex flex-wrap gap-2 w-3/4 mx-auto my-7">
                 <Button
-                    color="gray"
                     pill={true}
                     onClick={() => Preposting()}
                 >
