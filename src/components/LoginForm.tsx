@@ -13,7 +13,7 @@ const LoginForm = () => {
                         <input
                             className='w-64 md:w-96 border-white border-solid border-2 pl-3 py-2  focus:outline-none bg-transparent rounded-xl placeholder:text-md text-md placeholder:text-white'
                             type={"text"}
-                            placeholder="Username"
+                            placeholder="Identifiant"
                             id="username"
                             name='username'
                             required/>
@@ -22,7 +22,7 @@ const LoginForm = () => {
                         <input
                             className='w-64 md:w-96 border-white border-solid border-2 pl-3 py-2  focus:outline-none bg-transparent rounded-xl placeholder:text-md text-md placeholder:text-white'
                             type={"password"}
-                            placeholder="Password"
+                            placeholder="Mot de passe"
                             id="password"
                             name='password'
                             required/>
@@ -30,7 +30,7 @@ const LoginForm = () => {
                 </form>
             </div>
             <div className='w-full mt-7 flex justify-center items-center'>
-                <button className='w-64 md:w-96 bg-gradient-to-r rounded-xl text-lg py-1 from-sky-300 via-sky-600 to-sky-800' ><Link to="/room">Sign In</Link></button>
+                <button className='w-64 md:w-96 bg-gradient-to-r rounded-xl text-lg py-1 from-sky-300 via-sky-600 to-sky-800' ><Link to="/room">Connexion</Link></button>
             </div>
         </div>
     </>);
