@@ -1,0 +1,38 @@
+[
+    {
+        "clientName":"Dinasoa",
+        "phoneNumber":"034 64 297 51",
+        "bookingDate":"2022-09-31",
+        "roomCategoryName":"double",
+        "roomId":2,
+        "id":1,
+        "creationDate":"2022-09-31"
+    },
+    {
+        "clientName":"Liana",
+        "phoneNumber":"034 69 299 59",
+        "bookingDate":"2022-10-19",
+        "roomCategoryName":"family",
+        "roomId":1,
+        "id":2,
+        "creationDate":"2022-09-31"
+    },
+    {
+        "clientName":"Mahefa",
+        "phoneNumber":"034 42 242 24",
+        "bookingDate":"2022-11-02",
+        "roomCategoryName":"suite",
+        "roomId":4,
+        "id":3,
+        "creationDate":"2022-09-31"
+    },
+    {
+        "clientName":"Sanda",
+        "phoneNumber":"034 01 291 51",
+        "bookingDate":"2022-10-10",
+        "roomCategoryName":"double",
+        "roomId":42,
+        "id":4,
+        "creationDate":"2022-09-31"
+    }
+]
