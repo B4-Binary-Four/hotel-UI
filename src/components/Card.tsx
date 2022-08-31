@@ -11,13 +11,12 @@ const Card:React.FC <{title:string,description:string,price:number,reduction:num
             </Rating>
             <div className={"text-center"} >
                 <h1 className={"w-full text-lg mb-5"} >{title.toUpperCase()}</h1>
-                <p>{description}</p>
+                <p className="px-5 md:px-20" >{description}</p>
                 <p>PROMO!</p>
                 <p><del>{price} Ar</del></p>
                 <p>{reduction} Ar</p>
                 <button className={"w-full bg-gradient-to-l from-slate-200 via-slate-400 to-slate-500 rounded-lg text-white mt-2"} >Réserver</button>
             </div>
-
         </div>
     </>);
 }
