@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 
 const LandingPage : React.FC = () => {
     return(<>
-        <div className={"min-w-full min-h-screen bg-gradient-to-b from-sky-700 via-sky-500 to-sky-300"} >
+        <div className={"min-w-full min-h-screen bg-white"} >
             <NavigationBar page={"/"} redirectPath={"/login"} linkOne={"Nos offres"} linkTwo={"À propos de nous"} buttonText={"Se connecter"}/>
             <Offers/>
             <AboutUs/>
