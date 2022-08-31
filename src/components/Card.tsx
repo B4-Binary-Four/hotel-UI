@@ -1,23 +1,31 @@
 import React from "react";
-import { Rating } from "flowbite-react";
+import { Card as CBox, Button} from "flowbite-react";
 
 
-const Card:React.FC <{title:string,description:string,price:number,reduction:number}> = (props)  =>{
-    const {title,description,price,reduction} = props;
+
+const Card:React.FC <{title:string,description:string,price:number,reduction:number,imageSrc:string}> = (props)  =>{
+    const {title,description,price,reduction,imageSrc} = props;
     return (<>
-        <div className="relative my-6 hover:shadow-lg hover:shadow-slate-500 md:max-w-sm max-w-xs bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-            <Rating size={"md"}>
-                <Rating.Star/>
-            </Rating>
-            <div className={"text-center"} >
-                <h1 className={"w-full text-lg mb-5"} >{title.toUpperCase()}</h1>
-                <p className="px-5 md:px-20" >{description}</p>
-                <p>PROMO!</p>
-                <p><del>{price} Ar</del></p>
-                <p>{reduction} Ar</p>
-                <button className={"w-full bg-gradient-to-l from-slate-200 via-slate-400 to-slate-500 rounded-lg text-white mt-2"} >Réserver</button>
+        <div className="max-w-xs md:max-w-sm mx-auto my-3 shadow-sm hover:shadow-xl">
+                <CBox imgSrc={imageSrc}>
+                    <h5 className="text-xl text-center font-work tracking-tight text-gray-900 dark:text-white">
+                        {title.toUpperCase()}
+                    </h5>
+                    <p className="font-normal text-gray-700 dark:text-gray-400 px-6 text-center">
+                        {description}
+                    </p>
+                    <strong className="w-full text-center flex gap-3 justify-center items-center">{reduction} Ariary
+                        <li className="flex space-x-3 line-through decoration-gray-500">
+                            <span className="text-base font-normal leading-tight text-gray-500">
+                                {price}
+                            </span>
+                        </li>
+                    </strong>
+                    <span className="w-full flex justify-center items-center">
+                        <Button pill={true} >Réserver</Button>
+                    </span>
+                </CBox>
             </div>
-        </div>
     </>);
 }
 

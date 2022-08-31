@@ -99,7 +99,7 @@ const RoomPage : React.FC = () => {
     return(<>
         <div className={"min-w-full min-h-screen bg-white"} >
             <div className={"mb-5"}>
-            <NavigationBar page={"/booking_list"} linkOne={"Liste des reservations"} buttonText={"Se déconnecter"} redirectPath={"/"}/>
+            <NavigationBar page={"/booking_list"} linkOne={"Liste des réservations"} buttonText={"Se déconnecter"} redirectPath={"/"}/>
             </div>
             <div className="flex flex-wrap gap-2 w-3/4 mx-auto my-7">
                 <Button
