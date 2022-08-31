@@ -7,6 +7,7 @@ module.exports = {
     "./public/index.html",
     "./src/components/*.{js,jsx,ts,tsx}",
     "./src/pages/*.{js,jsx,ts,tsx}",
+    "./node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}"
  ],
   theme: {
     extend: {},
@@ -42,5 +43,7 @@ module.exports = {
       serif: ['Merriweather', 'serif'],
     }
   },
-  plugins: [],
+  plugins: [
+      require("flowbite/plugin")
+  ],
 }
