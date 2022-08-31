@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-const NavigationBar : React.FC <{linkOne:string,linkTwo:string,buttonText:string,redirectPath:string}> = (props) => {
+const NavigationBar : React.FC <{linkOne:string,linkTwo?:string,buttonText:string,redirectPath:string}> = (props) => {
     const {linkOne,linkTwo,buttonText,redirectPath} = props;
     return(<>
 
