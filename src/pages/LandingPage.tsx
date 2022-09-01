@@ -25,7 +25,7 @@ const LandingPage : React.FC = () => {
     const [endpoint, setEndpoint] = useState<string>("")
 
     useEffect(() => {
-            const promise = axios.get("https://hotelcp.herokuapp.com/roomCategories",
+            const promise = axios.get("http://localhost:8080/roomCategories",
                 { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
             promise.then((response) => {
                 setResults(response.data);
@@ -36,7 +36,7 @@ const LandingPage : React.FC = () => {
     )
 
     useEffect(() => {
-            const promise = axios.get("https://hotelcp.herokuapp.com/rooms?page=1&pageSize=500&category="+select,
+            const promise = axios.get("http://localhost:8080/rooms?page=1&pageSize=500&category="+select,
                 { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
             promise.then((response) => {
                 setOtherResult(response.data);
@@ -53,7 +53,7 @@ const LandingPage : React.FC = () => {
 
     const PostBooking = () => {
         const promise = axios.post(
-            "https://hotelcp.herokuapp.com/booking", {
+            "http://localhost:8080/booking", {
                 "clientName": clientName,
                 "phoneNumber": phoneNumber,
                 "bookingDate": bookingDate,

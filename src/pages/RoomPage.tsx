@@ -52,7 +52,7 @@ const RoomPage: React.FC = () => {
     }
 
     useEffect(() => {
-            const promise = axios.get("https://hotelcp.herokuapp.com/rooms?page="+page+"&pageSize="+nbrPerPage+"&instant="+new Date());
+            const promise = axios.get("http://localhost:8080/rooms?page="+page+"&pageSize="+nbrPerPage+"&instant="+new Date());
             promise.then((response) => {
                 setResults(response.data);
             }).catch((err) => {
@@ -63,7 +63,7 @@ const RoomPage: React.FC = () => {
 
     const PostRoom = () => {
         const promise = axios.post(
-            "https://hotelcp.herokuapp.com/rooms", {
+            "http://localhost:8080/rooms", {
                 "roomName": roomName,
                 "description": description,
                 "categoryName": categoryName
@@ -84,7 +84,7 @@ const RoomPage: React.FC = () => {
 
     const putData = () => {
         const promise = axios.put(
-            "https://hotelcp.herokuapp.com/rooms/"+id,
+            "http://localhost:8080/rooms/"+id,
             {
                 "roomName": roomName,
                 "description": description,

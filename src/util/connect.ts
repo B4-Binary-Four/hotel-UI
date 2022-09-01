@@ -1,7 +1,7 @@
 import axios, {AxiosResponse} from "axios";
 
 export const connect:(username:string,password:string)=>(Promise<AxiosResponse<any, any>>)=(username:string,password:string)=>{
-    return axios.get(`https://hotelcp.herokuapp.com/ping`,{
+    return axios.get(`http://localhost:8080/ping`,{
     headers: {
         authorization: `Basic ${window.btoa(username+':'+password)}`,
     },

@@ -47,7 +47,7 @@ const CategoryPage : React.FC = () => {
     }
 
     useEffect(() => {
-            const promise = axios.get("https://hotelcp.herokuapp.com/roomCategories",
+            const promise = axios.get("http://localhost:8080/roomCategories",
                 { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
             promise.then((response) => {
                 setResults(response.data);
@@ -59,7 +59,7 @@ const CategoryPage : React.FC = () => {
 
     const PostCategory = () => {
         const promise = axios.post(
-            "https://hotelcp.herokuapp.com/roomCategories", {
+            "http://localhost:8080/roomCategories", {
                 "categoryName": categoryName,
                 "price": price
             }, { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
@@ -79,7 +79,7 @@ const CategoryPage : React.FC = () => {
 
     const putCatgory = () => {
         const promise = axios.put(
-            "https://hotelcp.herokuapp.com/roomCategories/"+id,
+            "http://localhost:8080/roomCategories/"+id,
             {
                 "categoryName": categoryName,
                 "price": price,

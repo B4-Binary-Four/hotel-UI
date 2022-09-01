@@ -13,7 +13,7 @@ const Offers : React.FC = () => {
     const desc = [ "L'offre qui vous emmenera loin", "Voyez comme vous le sentez" ,"Un peu modeste mais fun" ]
 
     useEffect(() => {
-            const promise = axios.get("https://hotelcp.herokuapp.com/roomCategories",
+            const promise = axios.get("http://localhost:8080/roomCategories",
                 { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
             promise.then((response) => {
                 setResults(response.data);

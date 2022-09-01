@@ -56,7 +56,7 @@ const BookingPage : React.FC = () => {
     }
 
     useEffect(() => {
-            const promise = axios.get("https://hotelcp.herokuapp.com/roomCategories",
+            const promise = axios.get("http://localhost:8080/roomCategories",
                 { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
             promise.then((response) => {
                 setOtherResults(response.data);
@@ -67,7 +67,7 @@ const BookingPage : React.FC = () => {
     )
 
     useEffect(() => {
-            const promise = axios.get("https://hotelcp.herokuapp.com/bookings?page="+page+"&pageSize="+nbrPerPage+"&roomCategoryName="+select,
+            const promise = axios.get("http://localhost:8080/bookings?page="+page+"&pageSize="+nbrPerPage+"&roomCategoryName="+select,
                 { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
             promise.then((response) => {
                 setResults(response.data);
