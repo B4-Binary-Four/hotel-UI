@@ -5,15 +5,16 @@ import Booking from "../types/Booking";
 import RoomCategory from "../types/RoomCategory";
 import axios from "axios";
 import {data} from "autoprefixer";
+import {ICategory} from "../types/ICategory";
 
 const BookingPage : React.FC = () => {
     const [results, setResults] = useState<Booking[]>([])
+    const [otherResults, setOtherResults] = useState<ICategory[]>([])
 
     const [modal, toggleModal] = useState<boolean>(false)
-    const [modalCat, toggleModalCat] = useState<boolean>(false)
+    const [select, setSelect] = useState<string>("")
     const [postModal, togglePostModal] = useState<boolean>(false)
     const [green, setGreen ] = useState<boolean>(false)
-    const [putConf, setPutConf] = useState<boolean>(false)
     const [putCon, setPutCon] = useState<boolean>(false)
 
     const [id, setId] = useState("");
@@ -55,37 +56,27 @@ const BookingPage : React.FC = () => {
     }
 
     useEffect(() => {
-            const promise = axios.get("https://hotelcp.herokuapp.com/bookings?page="+page+"&pageSize="+nbrPerPage);
+            const promise = axios.get("https://hotelcp.herokuapp.com/roomCategories",
+                { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
+            promise.then((response) => {
+                setOtherResults(response.data);
+            }).catch((err) => {
+                console.log(err);
+            })
+        }, [modal, results, data, setOtherResults]
+    )
+
+    useEffect(() => {
+            const promise = axios.get("https://hotelcp.herokuapp.com/bookings?page="+page+"&pageSize="+nbrPerPage+"&roomCategoryName="+select,
+                { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
             promise.then((response) => {
                 setResults(response.data);
+                console.log(response.data)
             }).catch((err) => {
                 console.log(err);
             })
         }, [modal, results, data, setResults]
     )
-
-    /*const PostBooking = () => {
-        const promise = axios.post(
-            "https://hotelcp.herokuapp.com/booking", {
-                "clientName": clientName,
-                "phoneNumber": phoneNumber,
-                "bookingDate": bookingDate,
-                "bookingEndDate": bookingEndDate,
-                "roomId": 1
-            }, { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
-        promise
-            .then((response) => {
-                console.log(response);
-                setGreen(true);
-            })
-            .catch((error) => {
-                console.error(error);
-            })
-            .finally(() => {
-                CleanningForms();
-                togglePostModal(false);
-            })
-    }*/
 
     return (<>
         <div className={"min-w-full min-h-screen bg-white"} >
@@ -96,11 +87,12 @@ const BookingPage : React.FC = () => {
                     <select
                         name="roomCategories"
                         id="roomCategories"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value={""} disabled></option>
-                        <option value={RoomCategory.Double}>Double</option>
-                        <option value={RoomCategory.Family}>Familiale</option>
-                        <option value={RoomCategory.Suite}>Suite</option>
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        onChange={(e: React.FormEvent<HTMLSelectElement>) => setSelect(e.currentTarget.value)}
+                    >
+                        {otherResults.map((item: ICategory) => (
+                            <option key={`${item.categoryName}`} value={item.categoryName}>{item.categoryName}</option>
+                        ))}
                     </select>
                 </div>
                 <div>

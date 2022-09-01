@@ -52,7 +52,7 @@ const RoomPage: React.FC = () => {
     }
 
     useEffect(() => {
-            const promise = axios.get("https://hotelcp.herokuapp.com/rooms?page="+page+"&pageSize="+nbrPerPage);
+            const promise = axios.get("https://hotelcp.herokuapp.com/rooms?page="+page+"&pageSize="+nbrPerPage+"&instant="+new Date());
             promise.then((response) => {
                 setResults(response.data);
             }).catch((err) => {
@@ -318,21 +318,6 @@ const RoomPage: React.FC = () => {
                                 <TextInput
                                     onChange={(e) => setPrice(e.target.value)}
                                     value={price}
-                                    id="password1"
-                                    type="string"
-                                    required={true}
-                                />
-                            </div>
-                            <div>
-                                <div className="mb-2 block">
-                                    <Label
-                                        htmlFor="password1"
-                                        value="Booking Account"
-                                    />
-                                </div>
-                                <TextInput
-                                    onChange={(e) => setBookingAccount(e.target.value)}
-                                    value={bookingCount}
                                     id="password1"
                                     type="string"
                                     required={true}
