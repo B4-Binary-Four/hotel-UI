@@ -1,8 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-const NavigationBar : React.FC <{linkOne:string,linkTwo?:string,buttonText:string,redirectPath:string,page:string}> = (props) => {
-    const {linkOne,linkTwo,buttonText,redirectPath,page} = props;
+const NavigationBar : React.FC <{linkOne:string,linkTwo?:string,buttonText:string,redirectPath:string,pageOne:string,pageTwo:string}> = (props) => {
+    const {linkOne,linkTwo,buttonText,redirectPath,pageOne,pageTwo} = props;
     return(<>
 
         <header>
@@ -10,8 +10,8 @@ const NavigationBar : React.FC <{linkOne:string,linkTwo?:string,buttonText:strin
                 <div className={"ml-1 md:ml-3"} >logo</div>
                 <div className={"flex flex-row gap-4 md:gap-10 items-center"} >
                     <ul className={"flex flex-row gap-5"} >
-                        <li><Link to={page}>{linkOne}</Link></li>
-                        <li>{linkTwo}</li>
+                        <li><Link to={pageTwo}>{linkTwo}</Link></li>
+                        <li><Link to={pageOne}>{linkOne}</Link></li>
                     </ul>
                     <button className={"mr-3 text-center bg-sky-900 rounded-full shadow-md p-1.5 hover:bg-sky-400/40"}><Link to={redirectPath}>{buttonText}</Link></button>
                 </div>

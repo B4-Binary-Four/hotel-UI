@@ -4,6 +4,7 @@ import LandingPage from './pages/LandingPage';
 import LoginPage from "./pages/LoginPage";
 import BookingPage from "./pages/BookingPage";
 import RoomPage from "./pages/RoomPage";
+import CategoryPage from "./pages/CategoryPage";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
           <Route path={"/login"} element={<LoginPage/>}/>
           <Route path={"/booking_list"} element={<BookingPage/>}/>
           <Route path={"/room"} element={<RoomPage/>}/>
+          <Route path={"/category"} element={<CategoryPage/>}></Route>
       </Routes>
     </div>
   );

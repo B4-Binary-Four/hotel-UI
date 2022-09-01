@@ -5,7 +5,7 @@ import NavigationBar from "../components/NavigationBar";
 const BookingPage : React.FC = () => {
     return (<>
         <div className={"min-w-full min-h-screen bg-white"} >
-            <NavigationBar page="/room" linkOne={"Liste des chambres"} buttonText={"Se déconnecter"} redirectPath={"/"}/>
+            <NavigationBar linkTwo={"Liste des categories"} pageTwo={"/category"} pageOne="/room" linkOne={"Liste des chambres"} buttonText={"Se déconnecter"} redirectPath={"/"}/>
             <BookingTable/>
         </div>
     </>);
