@@ -5,7 +5,6 @@ import {Button, Label, Modal, Pagination, TextInput, Toast} from "flowbite-react
 import NavigationBar from "../components/NavigationBar";
 import axios from "axios";
 import {data} from "autoprefixer";
-import Confirmation from "../components/Confirmation";
 
 const RoomPage: React.FC = () => {
     const [results, setResults] = useState<IRoom[]>([])
@@ -14,8 +13,7 @@ const RoomPage: React.FC = () => {
     const [modalCat, toggleModalCat] = useState<boolean>(false)
     const [postModal, togglePostModal] = useState<boolean>(false)
     const [green, setGreen ] = useState<boolean>(false)
-    const [putConf, setPutConf] = useState<boolean>(false)
-    const [putCon, setPutCon] = useState<boolean>(false)
+    const [red, setRed ] = useState<boolean>(false)
 
     const [id, setId] = useState("");
     const [description, setDescription] = useState("");
@@ -25,10 +23,10 @@ const RoomPage: React.FC = () => {
     const [bookingCount, setBookingAccount] = useState("");
     const [roomName, setRoomName] = useState("");
 
+    const [page, setPage] = useState(1);
+    const [nbrPerPage, setNrbPerPage] = useState(5);
+
     const [action, setAction] = useState("");
-    const [selection, setSelection] = useState<number>(0);
-    const [pageNumber, setPageNumber] = useState("");
-    const [catIdCate, setCatIdCate] = useState("");
     var datas: any = [];
 
     const GetValues = (e: any) => {
@@ -54,7 +52,7 @@ const RoomPage: React.FC = () => {
     }
 
     useEffect(() => {
-            const promise = axios.get("https://hotelcp.herokuapp.com/rooms?page=1&pageSize=10");
+            const promise = axios.get("https://hotelcp.herokuapp.com/rooms?page="+page+"&pageSize="+nbrPerPage);
             promise.then((response) => {
                 setResults(response.data);
             }).catch((err) => {
@@ -79,7 +77,7 @@ const RoomPage: React.FC = () => {
                 console.error(error);
             })
             .finally(() => {
-                CleanningForms();
+                CleaningForms();
                 togglePostModal(false);
             })
     }
@@ -91,26 +89,25 @@ const RoomPage: React.FC = () => {
                 "roomName": roomName,
                 "description": description,
                 "status": status,
-                "categoryName": categoryName,
-                "price": price,
-                "bookingCount": bookingCount
+                "categoryName": categoryName
             },
             { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
         promise
             .then((response) => {
                 console.log(response);
+                setRed(true);
             })
             .catch((error) => {
                 console.error(error);
             })
             .finally(() => {
-                CleanningForms();
+                CleaningForms();
+                togglePostModal(false)
                 toggleModal(false);
             })
-
     }
 
-    const CleanningForms = (): void => {
+    const CleaningForms = (): void => {
         setId('');
         setRoomName('')
         setDescription('');
@@ -123,13 +120,21 @@ const RoomPage: React.FC = () => {
 
     const Preposting = (): void => {
         setAction("posting");
-        CleanningForms();
+        CleaningForms();
     }
-
-    const [page, setPage] = useState<number>(1);
 
     const onPageChange = (): void => {
         setPage(page + 1)
+    }
+
+    const Increment = () => {
+        setPage(page + 1);
+    }
+
+    function Decrement() {
+        if (page >= 2) {
+            setPage(page - 1);
+        }
     }
 
     // @ts-ignore
@@ -150,11 +155,17 @@ const RoomPage: React.FC = () => {
                 </div>
                 <RoomDashboard data={results} getValue={GetValues}/>
                 <div className="flex flex-wrap gap-2 w-3/4 mx-auto my-7">
-                    <Pagination
-                        currentPage={1}
-                        totalPages={100}
-                        onPageChange={onPageChange}
-                    />
+                    <button type="button"
+                            onClick={Decrement}
+                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Previous
+                    </button>
+                    <button type="button"
+                            className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">{page}
+                    </button>
+                    <button type="button"
+                            onClick={Increment}
+                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Next
+                    </button>
                 </div>
             </div>
 
@@ -178,6 +189,33 @@ const RoomPage: React.FC = () => {
                     <span className="sr-only" onClick={() => setGreen(false)}>Close</span>
                     <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                          xmlns="http://www.w3.org/2000/svg" onClick={() => setGreen(false)}>
+                        <path fill-rule="evenodd"
+                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div> : null }
+
+            { red ? <div id="toast-success"
+                           className="flex items-center p-4 mt-5 ml-20 w-full max-w-xs text-gray-500 bg-green-300 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+                           role="alert">
+                <div
+                    className="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                    <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                    <span className="sr-only">Check icon</span>
+                </div>
+                <div className="ml-3 text-sm font-normal">Item change successfully.</div>
+                <button type="button"
+                        className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                        data-dismiss-target="#toast-success" aria-label="Close">
+                    <span className="sr-only" onClick={() => setRed(false)}>Close</span>
+                    <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg" onClick={() => setRed(false)}>
                         <path fill-rule="evenodd"
                               d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                               clip-rule="evenodd"></path>
@@ -383,7 +421,7 @@ const RoomPage: React.FC = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            { putCon ? <Confirmation textValidation={"Voulez vous vous déconnecter ?"} confirmAction={putData}></Confirmation> : null}
+
         </div>
     </>);
 }

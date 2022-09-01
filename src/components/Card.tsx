@@ -3,7 +3,7 @@ import { Card as CBox, Button} from "flowbite-react";
 
 
 
-const Card:React.FC <{title:string,description:string,price:number,reduction:number,imageSrc:string}> = (props)  =>{
+const Card:React.FC <{title:any,description:string,price:number,reduction:number,imageSrc:string}> = (props)  =>{
     const {title,description,price,reduction,imageSrc} = props;
     return (<>
         <div className="max-w-xs md:max-w-sm mx-auto my-3 shadow-sm hover:shadow-xl">
