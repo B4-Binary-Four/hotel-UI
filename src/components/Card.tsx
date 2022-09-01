@@ -1,22 +1,28 @@
 import React from "react";
+import { Card as CBox} from "flowbite-react";
 
 
-const Card:React.FC <{title:string,description:string,price:number,reduction:number}> = (props)  =>{
-    const {title,description,price,reduction} = props;
+
+const Card:React.FC <{title:string,description:string,price:number,reduction:number,imageSrc:string}> = (props)  =>{
+    const {title,description,price,reduction,imageSrc} = props;
     return (<>
-        <div className="relative my-4 hover:shadow-lg hover:shadow-slate-500 md:max-w-sm max-w-xs bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-            <span
-                className="-top-5 -left-2 absolute w-16 h-16 bg-blue-700 text-white border-2 border-white dark:border-gray-800 rounded-full text-xs flex justify-center items-center">Populaire</span>
-            <div className={"text-center"} >
-                <h1 className={"w-full text-lg mb-5"} >{title.toUpperCase()}</h1>
-                <p>{description}</p>
-                <p>PROMO!</p>
-                <p><del>{price} Ar</del></p>
-                <p>{reduction} Ar</p>
-                <button className={"w-full bg-gradient-to-l from-slate-200 via-slate-400 to-slate-500 rounded-lg text-white mt-2"} >Réserver</button>
+        <div className="max-w-sm md:max-w-sm mx-auto my-3 shadow-sm hover:shadow-xl hover:scale-105">
+                <CBox imgSrc={imageSrc}>
+                    <h5 className="text-xl text-center font-work tracking-tight text-gray-900 dark:text-white">
+                        {title.toUpperCase()}
+                    </h5>
+                    <p className="font-normal text-gray-700 dark:text-gray-400 px-6 text-center">
+                        {description}
+                    </p>
+                    <strong className="w-full text-center flex gap-3 justify-center items-center">{reduction} Ariary
+                        <li className="flex space-x-3 line-through decoration-gray-500">
+                            <span className="text-base font-normal leading-tight text-gray-500">
+                                {price}
+                            </span>
+                        </li>
+                    </strong>
+                </CBox>
             </div>
-
-        </div>
     </>);
 }
 

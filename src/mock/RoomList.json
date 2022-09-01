@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "description": "Avec télé et wifi",
+    "status": "AVAILABLE",
+    "categoryName": "Double",
+    "price": 2000,
+    "bookingCount": 2
+  },
+  {
+    "id": 2,
+    "description": "Avec télé, sans wifi",
+    "status": "NOT AVAILABLE",
+    "categoryName": "Simple",
+    "price": 2500,
+    "bookingCount": 0
+  },
+  {
+    "id": 3,
+    "description": "Sans télé, sans wifi",
+    "status": "NOT AVAILABLE",
+    "categoryName": "Double",
+    "price": 5000,
+    "bookingCount": 52
+  },
+  {
+    "id": 4,
+    "description": "Chambre XXL",
+    "status": "AVAILABLE",
+    "categoryName": "Double",
+    "price": 10500,
+    "bookingCount": 2
+  },
+  {
+    "id": 2,
+    "description": "Un lit",
+    "status": "NOT AVAILABLE",
+    "categoryName": "Simple",
+    "price": 1800,
+    "bookingCount": 128
+  }
+]

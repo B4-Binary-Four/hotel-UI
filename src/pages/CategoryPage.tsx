@@ -1,32 +1,32 @@
 import React, {useEffect, useState} from "react";
 import {IRoom} from "../types/IRoom";
-import RoomDashboard from "../components/RoomDashboard";
-import {Button, Label, Modal, Pagination, TextInput, Toast} from "flowbite-react";
+import list from "../mock/RoomList.json";
 import NavigationBar from "../components/NavigationBar";
+import {Button, Label, Modal, Pagination, TextInput} from "flowbite-react";
+import RoomDashboard from "../components/RoomDashboard";
+import {ICategory} from "../types/ICategory";
+import CategoryDashboard from "../components/CategoryDashboard";
 import axios from "axios";
 import {data} from "autoprefixer";
 
-const RoomPage: React.FC = () => {
-    const [results, setResults] = useState<IRoom[]>([])
+const CategoryPage : React.FC = () => {
+    const [results, setResults] = useState<ICategory[]>([])
 
     const [modal, toggleModal] = useState<boolean>(false)
-    const [modalCat, toggleModalCat] = useState<boolean>(false)
     const [postModal, togglePostModal] = useState<boolean>(false)
+
     const [green, setGreen ] = useState<boolean>(false)
     const [red, setRed ] = useState<boolean>(false)
 
     const [id, setId] = useState("");
-    const [description, setDescription] = useState("");
-    const [status, setStatus] = useState("");
     const [categoryName, setCategoryName] = useState("");
     const [price, setPrice] = useState("");
-    const [bookingCount, setBookingAccount] = useState("");
-    const [roomName, setRoomName] = useState("");
-
-    const [page, setPage] = useState(1);
-    const [nbrPerPage, setNrbPerPage] = useState(5);
 
     const [action, setAction] = useState("");
+    const [selection, setSelection] = useState<number>(0);
+    const [pageNumber, setPageNumber] = useState("");
+    const [catIdCate, setCatIdCate] = useState("");
+
     var datas: any = [];
 
     const GetValues = (e: any) => {
@@ -41,18 +41,14 @@ const RoomPage: React.FC = () => {
                 datas.push(cells[i].innerHTML);
             }
         }
-        setId(datas[0]);
-        setRoomName(datas[1]);
-        setDescription(datas[2]);
-        setStatus(datas[3]);
-        setCategoryName(datas[4]);
-        setPrice(datas[5]);
-        setBookingAccount(datas[6]);
+        setId(datas[0]); setCategoryName(datas[1]);
+        setPrice(datas[2]);
         setAction("putting");
     }
 
     useEffect(() => {
-            const promise = axios.get("https://hotelcp.herokuapp.com/rooms?page="+page+"&pageSize="+nbrPerPage+"&instant="+new Date());
+            const promise = axios.get("https://hotelcp.herokuapp.com/roomCategories",
+                { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
             promise.then((response) => {
                 setResults(response.data);
             }).catch((err) => {
@@ -61,12 +57,11 @@ const RoomPage: React.FC = () => {
         }, [modal, results, data, setResults]
     )
 
-    const PostRoom = () => {
+    const PostCategory = () => {
         const promise = axios.post(
-            "https://hotelcp.herokuapp.com/rooms", {
-                "roomName": roomName,
-                "description": description,
-                "categoryName": categoryName
+            "https://hotelcp.herokuapp.com/roomCategories", {
+                "categoryName": categoryName,
+                "price": price
             }, { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
         promise
             .then((response) => {
@@ -77,19 +72,17 @@ const RoomPage: React.FC = () => {
                 console.error(error);
             })
             .finally(() => {
-                CleaningForms();
+                CleanningForms();
                 togglePostModal(false);
             })
     }
 
-    const putData = () => {
+    const putCatgory = () => {
         const promise = axios.put(
-            "https://hotelcp.herokuapp.com/rooms/"+id,
+            "https://hotelcp.herokuapp.com/roomCategories/"+id,
             {
-                "roomName": roomName,
-                "description": description,
-                "status": status,
-                "categoryName": categoryName
+                "categoryName": categoryName,
+                "price": price,
             },
             { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
         promise
@@ -101,77 +94,44 @@ const RoomPage: React.FC = () => {
                 console.error(error);
             })
             .finally(() => {
-                CleaningForms();
+                CleanningForms();
                 togglePostModal(false)
                 toggleModal(false);
             })
     }
 
-    const CleaningForms = (): void => {
-        setId('');
-        setRoomName('')
-        setDescription('');
-        setStatus('');
-        setCategoryName('');
+    const CleanningForms = ():void => {
+        setId(''); setCategoryName('');
         setPrice('');
-        setBookingAccount('');
         togglePostModal(true);
     }
 
     const Preposting = (): void => {
         setAction("posting");
-        CleaningForms();
+        CleanningForms();
     }
 
-    const onPageChange = (): void => {
-        setPage(page + 1)
-    }
-
-    const Increment = () => {
-        setPage(page + 1);
-    }
-
-    function Decrement() {
-        if (page >= 2) {
-            setPage(page - 1);
-        }
-    }
-
-    // @ts-ignore
-    return (<>
-        <div className={"min-w-full mn-h-screen bg-white"}>
+    return(<>
+        <div className={"min-w-full min-h-screen bg-white"} >
             <div className={"mb-5"}>
-                <NavigationBar pageTwo={"/category"} linkTwo={"Liste des catégories"} pageOne={"/booking_list"} linkOne={"Liste des réservations"} buttonText={"Se déconnecter"}
+                <NavigationBar pageTwo={"/room"} linkTwo={"Liste des chambres"} pageOne={"/booking_list"} linkOne={"Liste des réservations"} buttonText={"Se déconnecter"}
                                redirectPath={"/"}/>
             </div>
-            <div className={"bg-gray-400 py-3 mx-20 rounded-3xl"}>
+            <div className={"bg-gray-400 pt-3 pb-20 mx-20 rounded-3xl"}>
                 <div className="flex flex-wrap gap-2 w-3/4 mx-auto my-7">
                     <Button
                         pill={true}
                         onClick={() => Preposting()}
                     >
-                        Ajouter une nouvelle chambre
+                        Ajouter une nouvelle catégorie
                     </Button>
                 </div>
-                <RoomDashboard data={results} getValue={GetValues}/>
-                <div className="flex flex-wrap gap-2 w-3/4 mx-auto my-7">
-                    <button type="button"
-                            onClick={Decrement}
-                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Previous
-                    </button>
-                    <button type="button"
-                            className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">{page}
-                    </button>
-                    <button type="button"
-                            onClick={Increment}
-                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Next
-                    </button>
-                </div>
+                <CategoryDashboard data={results} getValue={GetValues} />
             </div>
 
             { green ? <div id="toast-success"
-                 className="flex items-center p-4 mt-5 ml-20 w-full max-w-xs text-gray-500 bg-green-300 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
-                 role="alert">
+                           className="flex items-center p-4 mt-5 ml-20 w-full max-w-xs text-gray-500 bg-green-300 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+                           role="alert">
                 <div
                     className="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
                     <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -182,7 +142,7 @@ const RoomPage: React.FC = () => {
                     </svg>
                     <span className="sr-only">Check icon</span>
                 </div>
-                <div className="ml-3 text-sm font-normal">Chambre ajoutée.</div>
+                <div className="ml-3 text-sm font-normal">Item add successfully.</div>
                 <button type="button"
                         className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                         data-dismiss-target="#toast-success" aria-label="Close">
@@ -197,8 +157,8 @@ const RoomPage: React.FC = () => {
             </div> : null }
 
             { red ? <div id="toast-success"
-                           className="flex items-center p-4 mt-5 ml-20 w-full max-w-xs text-gray-500 bg-green-300 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
-                           role="alert">
+                         className="flex items-center p-4 mt-5 ml-20 w-full max-w-xs text-gray-500 bg-green-300 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+                         role="alert">
                 <div
                     className="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
                     <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -209,7 +169,7 @@ const RoomPage: React.FC = () => {
                     </svg>
                     <span className="sr-only">Check icon</span>
                 </div>
-                <div className="ml-3 text-sm font-normal">Mise à jour effectué.</div>
+                <div className="ml-3 text-sm font-normal">Item change successfully.</div>
                 <button type="button"
                         className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                         data-dismiss-target="#toast-success" aria-label="Close">
@@ -222,6 +182,7 @@ const RoomPage: React.FC = () => {
                     </svg>
                 </button>
             </div> : null }
+
 
             <Modal
                 show={modal}
@@ -245,51 +206,6 @@ const RoomPage: React.FC = () => {
                                     value={id}
                                     id="email1"
                                     type="email"
-                                    required={true}
-                                />
-                            </div>
-                            <div>
-                                <div className="mb-2 block">
-                                    <Label
-                                        htmlFor="password1"
-                                        value="RoomNAme"
-                                    />
-                                </div>
-                                <TextInput
-                                    onChange={(e) => setRoomName(e.target.value)}
-                                    value={roomName}
-                                    id="password1"
-                                    type="string"
-                                    required={true}
-                                />
-                            </div>
-                            <div>
-                                <div className="mb-2 block">
-                                    <Label
-                                        htmlFor="password1"
-                                        value="Description"
-                                    />
-                                </div>
-                                <TextInput
-                                    onChange={(e) => setDescription(e.target.value)}
-                                    value={description}
-                                    id="password1"
-                                    type="string"
-                                    required={true}
-                                />
-                            </div>
-                            <div>
-                                <div className="mb-2 block">
-                                    <Label
-                                        htmlFor="password1"
-                                        value="Status"
-                                    />
-                                </div>
-                                <TextInput
-                                    onChange={(e) => setStatus(e.target.value)}
-                                    value={status}
-                                    id="password1"
-                                    type="string"
                                     required={true}
                                 />
                             </div>
@@ -327,21 +243,12 @@ const RoomPage: React.FC = () => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button color="gray" type="submit" onClick={() => putData()}>
+                    <Button color="gray" type="submit" onClick={() => putCatgory()}>
                         Envoyer
                     </Button>
                 </Modal.Footer>
-
-                <Modal
-                    show={modalCat}
-                    onClose={() => toggleModalCat(false)}
-                >
-                    <Modal.Header>
-                        Category
-                    </Modal.Header>
-                </Modal>
-
             </Modal>
+
             <Modal
                 show={postModal}
                 onClose={() => togglePostModal(false)}
@@ -356,27 +263,12 @@ const RoomPage: React.FC = () => {
                                 <div className="mb-2 block">
                                     <Label
                                         htmlFor="password1"
-                                        value="Nom"
+                                        value="Price"
                                     />
                                 </div>
                                 <TextInput
-                                    onChange={(e) => setRoomName(e.target.value)}
-                                    value={roomName}
-                                    id="password1"
-                                    type="string"
-                                    required={true}
-                                />
-                            </div>
-                            <div>
-                                <div className="mb-2 block">
-                                    <Label
-                                        htmlFor="password1"
-                                        value="Description"
-                                    />
-                                </div>
-                                <TextInput
-                                    onChange={(e) => setDescription(e.target.value)}
-                                    value={description}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                    value={price}
                                     id="password1"
                                     type="string"
                                     required={true}
@@ -401,14 +293,13 @@ const RoomPage: React.FC = () => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button color="gray" type="submit" onClick={() => PostRoom()}>
+                    <Button color="gray" type="submit" onClick={() => PostCategory()}>
                         Envoyer
                     </Button>
                 </Modal.Footer>
             </Modal>
-
         </div>
     </>);
 }
 
-export default RoomPage;
+export default CategoryPage;

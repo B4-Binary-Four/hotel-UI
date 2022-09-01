@@ -1,0 +1,24 @@
+.wrapper {
+    background-image: url('../assets/hotel_one.jpg');
+    background-size: cover;
+    filter: brightness(50%);
+    position: relative;
+}
+
+.hquote{
+    animation: zoom normal 2s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    mix-blend-mode: hard-light;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes zoom {
+    0%{
+        transform: scale(0.5);
+    }
+    100%{
+        transform: scale(1);
+    }
+}

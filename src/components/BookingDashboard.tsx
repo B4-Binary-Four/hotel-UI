@@ -1,10 +1,14 @@
-import React from "react";
-import { Table} from "flowbite-react";
-import {RoomProps} from "../types/RoomProps";
-import '../styles/spinner.css';
+import React,{useEffect,useState} from "react";
+import Booking from "../types/Booking";
+import list from "../mock/BookingList.json";
+import { Table } from "flowbite-react";
+import RoomCategory from "../types/RoomCategory";
+import {BookingProps} from "../types/BookingProps";
 
-const RoomDashboard: React.FC<RoomProps> = ({data, getValue}) => {
-    return(
+const BookingDashboard : React.FC<BookingProps> = ({data, getValue}) => {
+    const [bookingList,setBookingList] = useState<Array<Booking>>();
+
+    return (<>
         <div className="w-3/4 mx-auto relative overflow-x-auto shadow-md sm:rounded-lg">
             <Table hoverable={true} className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <Table.Head className="text-xs text-white uppercase bg-amber-400 dark:bg-gray-700 dark:text-gray-400">
@@ -12,26 +16,29 @@ const RoomDashboard: React.FC<RoomProps> = ({data, getValue}) => {
                         Id
                     </Table.HeadCell>
                     <Table.HeadCell scope="col" className="px-6 py-3">
-                        Nom
+                        Client
                     </Table.HeadCell>
                     <Table.HeadCell scope="col" className="px-6 py-3">
-                        Description
+                        Numero
                     </Table.HeadCell>
                     <Table.HeadCell scope="col" className="px-6 py-3">
-                        Statut
+                        Reservation
+                    </Table.HeadCell>
+                    <Table.HeadCell scope="col" className="px-6 py-3">
+                        Fin de reservation
+                    </Table.HeadCell>
+                    <Table.HeadCell scope="col" className="px-6 py-3">
+                        Numero de chambre
+                    </Table.HeadCell>
+                    <Table.HeadCell scope="col" className="px-6 py-3">
+                        Date de reservation
                     </Table.HeadCell>
                     <Table.HeadCell scope="col" className="px-6 py-3">
                         Categorie
                     </Table.HeadCell>
                     <Table.HeadCell scope="col" className="px-6 py-3">
-                        Prix
-                    </Table.HeadCell>
-                    <Table.HeadCell scope="col" className="px-6 py-3">
-                        Nombre de reservations
-                    </Table.HeadCell>
-                    <Table.HeadCell scope="col" className="px-6 py-3">
       <span className="sr-only">
-        Modifier
+        Changer
       </span>
                     </Table.HeadCell>
                 </Table.Head >
@@ -43,22 +50,25 @@ const RoomDashboard: React.FC<RoomProps> = ({data, getValue}) => {
                                     {item.id}
                                 </Table.Cell>
                                 <Table.Cell className="px-6 py-4">
-                                    {item.roomName}
+                                    {item.clientName}
                                 </Table.Cell>
                                 <Table.Cell className="px-6 py-4">
-                                    {item.description}
+                                    {item.phoneNumber}
                                 </Table.Cell>
                                 <Table.Cell className="px-6 py-4">
-                                    {item.status}
+                                    {item.bookingDate}
                                 </Table.Cell>
                                 <Table.Cell className="px-6 py-4">
-                                    {item.categoryName}
+                                    {item.bookingEndDate}
                                 </Table.Cell>
                                 <Table.Cell className="px-6 py-4">
-                                    {item.price}
+                                    {item.roomId}
                                 </Table.Cell>
                                 <Table.Cell className="px-6 py-4">
-                                    {item.bookingCount}
+                                    {item.creationDate}
+                                </Table.Cell>
+                                <Table.Cell className="px-6 py-4">
+                                    {item.roomCategoryName}
                                 </Table.Cell>
                                 <Table.Cell className="px-6 py-4">
                                     <a
@@ -74,7 +84,7 @@ const RoomDashboard: React.FC<RoomProps> = ({data, getValue}) => {
                 </Table.Body>
             </Table>
         </div>
-    );
+        </>);
 }
 
-export default RoomDashboard;
+export default BookingDashboard;
