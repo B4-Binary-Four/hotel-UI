@@ -1,6 +1,7 @@
 import React from "react";
 import { Table} from "flowbite-react";
 import {RoomProps} from "../types/RoomProps";
+import '../styles/spinner.css';
 
 const RoomDashboard: React.FC<RoomProps> = ({data, getValue}) => {
     return(
@@ -30,7 +31,7 @@ const RoomDashboard: React.FC<RoomProps> = ({data, getValue}) => {
                     </Table.HeadCell>
                     <Table.HeadCell scope="col" className="px-6 py-3">
       <span className="sr-only">
-        Edit
+        Modifier
       </span>
                     </Table.HeadCell>
                 </Table.Head >

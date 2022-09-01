@@ -9,12 +9,16 @@ const AboutUs: React.FC = () => {
                 <div className="w-full flex justify-center md:max-w-none">
                     <img src={logo} alt="logo" className="w-48 h-48 my-4 md:my-0 rounded-full shadow-lg hover:scale-105 hover:shadow-xl" />
                 </div>
-                <div className="font-work text-center px-8 md:px-28" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nam quisquam labore,
-                     dicta tenetur illum. 
-                     Officiis qui quam voluptatibus eaque suscipit
-                     modi repellendus quaerat natus, ipsum reprehenderit 
-                     quibusdam recusandae illo!
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia officia dolorem fuga possimus omnis amet iusto culpa ex hic quam dicta cumque, consequuntur reprehenderit temporibus distinctio id quia quod provident?
+                <div className="font-work text-center px-8 md:px-28" >
+                        L’hôtel CP occupe un immeuble de 30 étages.
+                        Appartenant à la même famille depuis les années 40, ce sont depuis trois générations qui le  gèrent successivement.
+
+                        D’une capacité de 98 chambres, le CP est idéalement situé à proximité de la mer.
+                        Un parking privé à 290m de l’hôtel  vous est proposé.
+
+                        L’hôtel est entièrement non fumeur et n’accepte pas les animaux, sauf chiens guides ou d’assistance.
+
+                        Notre réception, assurée 7 jours sur 7 et 24H sur 24, est à votre écoute pour tout renseignement et réservation.
                 </div>
             </div>
         </section>

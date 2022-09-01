@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import logo from "../assets/logo_nobg.png";
 
-const NavigationBar : React.FC <{linkOne:string,linkTwo?:string,buttonText:string,redirectPath:string,pageOne:string,pageTwo:string}> = (props) => {
+const NavigationBar : React.FC <{linkOne?:string,linkTwo?:string,buttonText:string,redirectPath:string,pageOne:string,pageTwo:string}> = (props) => {
     const {linkOne,linkTwo,buttonText,redirectPath,pageOne,pageTwo} = props;
     return(<>
 
@@ -11,7 +11,7 @@ const NavigationBar : React.FC <{linkOne:string,linkTwo?:string,buttonText:strin
             <div className={"ml-1 md:ml-3 flex items-center justify-center "} >
             <img src={logo} alt="logo" className="w-12 h-12 md:w-16 md:h-16 shadow-md rounded-full hover:shadow-lg hover:shadow-yellow-500"/>
                 </div>
-        <div className={"flex flex-row gap-5 md:gap-10 items-center"} >
+        <div className={"flex flex-row gap-1 md:gap-10 items-center"} >
             <ul className={"flex flex-row gap-3 md:gap-6"} >
                         <li><Link to={pageTwo}>{linkTwo}</Link></li>
                         <li><Link to={pageOne}>{linkOne}</Link></li>

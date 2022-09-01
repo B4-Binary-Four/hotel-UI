@@ -141,7 +141,7 @@ const RoomPage: React.FC = () => {
     return (<>
         <div className={"min-w-full mn-h-screen bg-white"}>
             <div className={"mb-5"}>
-                <NavigationBar pageTwo={"/category"} linkTwo={"Liste des categories"} pageOne={"/booking_list"} linkOne={"Liste des reservations"} buttonText={"Se déconnecter"}
+                <NavigationBar pageTwo={"/category"} linkTwo={"Liste des catégories"} pageOne={"/booking_list"} linkOne={"Liste des réservations"} buttonText={"Se déconnecter"}
                                redirectPath={"/"}/>
             </div>
             <div className={"bg-gray-400 py-3 mx-20 rounded-3xl"}>
@@ -182,7 +182,7 @@ const RoomPage: React.FC = () => {
                     </svg>
                     <span className="sr-only">Check icon</span>
                 </div>
-                <div className="ml-3 text-sm font-normal">Item add successfully.</div>
+                <div className="ml-3 text-sm font-normal">Chambre ajoutée.</div>
                 <button type="button"
                         className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                         data-dismiss-target="#toast-success" aria-label="Close">
@@ -209,7 +209,7 @@ const RoomPage: React.FC = () => {
                     </svg>
                     <span className="sr-only">Check icon</span>
                 </div>
-                <div className="ml-3 text-sm font-normal">Item change successfully.</div>
+                <div className="ml-3 text-sm font-normal">Mise à jour effectué.</div>
                 <button type="button"
                         className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                         data-dismiss-target="#toast-success" aria-label="Close">

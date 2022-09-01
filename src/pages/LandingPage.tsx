@@ -9,8 +9,7 @@ import {Button, Label, Modal, TextInput} from "flowbite-react";
 import axios from "axios";
 import {data} from "autoprefixer";
 import {ICategory} from "../types/ICategory";
-import Booking from "../types/Booking";
-import {IRoom} from "../types/IRoom";
+import Reviews from "../components/Reviews";
 
 const LandingPage : React.FC = () => {
     const [modal, toggleModal] = useState<boolean>(false);
@@ -47,6 +46,11 @@ const LandingPage : React.FC = () => {
         }, [modal, results, data, setOtherResult]
     )
 
+    const OneToOne = () => {
+        toggleModal(false);
+        toggleReservationModal(true);
+    }
+
     const PostBooking = () => {
         const promise = axios.post(
             "https://hotelcp.herokuapp.com/booking", {
@@ -70,7 +74,7 @@ const LandingPage : React.FC = () => {
 
     return(<>
         <div className={"min-w-full min-h-screen bg-white"} >
-            <NavigationBar pageTwo={"/"} pageOne={"/"} redirectPath={"/login"} linkOne={"Nos offres"} linkTwo={"À propos de nous"} buttonText={"Se connecter"}/>
+            <NavigationBar pageTwo={""} pageOne={""} redirectPath={"/login"} buttonText={"Se connecter"}/>
             <Box/>
             <Button onClick={() => toggleModal(true)}>
                 Cliquez ici pour reserver
@@ -78,6 +82,7 @@ const LandingPage : React.FC = () => {
             <Offers/>
             <AboutUs/>
             <Features/>
+            <Reviews/>
             <Footer/>
         </div>
 
@@ -100,7 +105,7 @@ const LandingPage : React.FC = () => {
                 </select>
             </Modal.Body>
             <Modal.Footer>
-                <Button color="gray" type="submit" onClick={() => toggleModal(false)}>
+                <Button color="gray" type="submit" onClick={() => OneToOne()}>
                     Envoyer
                 </Button>
             </Modal.Footer>

@@ -4,7 +4,6 @@ import pic1 from '../assets/double.jpg';
 import pic2 from '../assets/familial.jpg';
 import pic3 from '../assets/room_one.jpg';
 import axios from "axios";
-import {data} from "autoprefixer";
 import {ICategory} from "../types/ICategory";
 
 
