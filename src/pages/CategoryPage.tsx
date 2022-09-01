@@ -44,7 +44,8 @@ const CategoryPage : React.FC = () => {
     }
 
     useEffect(() => {
-            const promise = axios.get("https://hotelcp.herokuapp.com/roomCategories?page=1&pageSize=10");
+            const promise = axios.get("https://hotelcp.herokuapp.com/roomCategories?page=1&pageSize=10",
+                { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
             promise.then((response) => {
                 setResults(response.data);
             }).catch((err) => {
@@ -58,7 +59,7 @@ const CategoryPage : React.FC = () => {
             "https://hotelcp.herokuapp.com/roomCategories", {
                 "categoryName": categoryName,
                 "price": price
-            }, { headers: { 'Access-Control-Allow-Origin': "*" } });
+            }, { headers: {authorization: `Basic ${window.localStorage.getItem("token")}`} });
         promise
             .then((response) => {
                 console.log(response);
@@ -194,7 +195,7 @@ const CategoryPage : React.FC = () => {
                                 <div className="mb-2 block">
                                     <Label
                                         htmlFor="password1"
-                                        value="Description"
+                                        value="Price"
                                     />
                                 </div>
                                 <TextInput

@@ -41,6 +41,8 @@ module.exports = {
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
+      fair : ['Playfair Display', 'serif'],
+      work: ['Work Sans', 'sans-serif']
     }
   },
   plugins: [

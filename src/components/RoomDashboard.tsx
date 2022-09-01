@@ -11,6 +11,9 @@ const RoomDashboard: React.FC<RoomProps> = ({data, getValue}) => {
                         Id
                     </Table.HeadCell>
                     <Table.HeadCell scope="col" className="px-6 py-3">
+                        Nom
+                    </Table.HeadCell>
+                    <Table.HeadCell scope="col" className="px-6 py-3">
                         Description
                     </Table.HeadCell>
                     <Table.HeadCell scope="col" className="px-6 py-3">
@@ -37,6 +40,9 @@ const RoomDashboard: React.FC<RoomProps> = ({data, getValue}) => {
                             <Table.Row className="bg-gray-100 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <Table.Cell scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                                     {item.id}
+                                </Table.Cell>
+                                <Table.Cell className="px-6 py-4">
+                                    {item.roomName}
                                 </Table.Cell>
                                 <Table.Cell className="px-6 py-4">
                                     {item.description}
