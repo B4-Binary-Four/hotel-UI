@@ -4,6 +4,7 @@ import Offers from "../components/Offers";
 import AboutUs from "../components/AboutUs";
 import Footer from "../components/Footer";
 import Box from "../components/ImageBox";
+import Features from "../components/Features";
 
 const LandingPage : React.FC = () => {
     return(<>
@@ -12,6 +13,7 @@ const LandingPage : React.FC = () => {
             <Box/>
             <Offers/>
             <AboutUs/>
+            <Features/>
             <Footer/>
         </div>
     </>);

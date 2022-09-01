@@ -37,6 +37,7 @@ module.exports = {
       fuchsia: colors.fuchsia,
       pink: colors.pink,
       rose: colors.rose,
+      bgl : "#e8e8e8"
     },
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],

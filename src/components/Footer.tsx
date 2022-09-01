@@ -2,10 +2,10 @@ import React from "react";
 
 const Footer : React.FC = () => {
     return (<>
-        <footer className="text-center text-white bg-gray-200">
+        <footer className="text-center text-white bg-amber-400">
             <div className="container pt-9">
-                <div className="flex justify-center mb-9">
-                    <a href="#!" className="mr-9 text-gray-800">
+                <div className="flex justify-center mb-7 text-white">
+                    <a href="#!" className="mr-9">
                         <svg
                             aria-hidden="true"
                             focusable="false"
@@ -22,7 +22,7 @@ const Footer : React.FC = () => {
                             ></path>
                         </svg>
                     </a>
-                    <a href="#!" className="mr-9 text-gray-800">
+                    <a href="#!" className="mr-9 text-white">
                         <svg
                             aria-hidden="true"
                             focusable="false"
@@ -39,7 +39,7 @@ const Footer : React.FC = () => {
                             ></path>
                         </svg>
                     </a>
-                    <a href="#!" className="mr-9 text-gray-800">
+                    <a href="#!" className="mr-9 text-white">
                         <svg
                             aria-hidden="true"
                             focusable="false"
@@ -56,7 +56,7 @@ const Footer : React.FC = () => {
                             ></path>
                         </svg>
                     </a>
-                    <a href="#!" className="mr-9 text-gray-800">
+                    <a href="#!" className="mr-9 text-white">
                         <svg
                             aria-hidden="true"
                             focusable="false"
@@ -73,7 +73,7 @@ const Footer : React.FC = () => {
                             ></path>
                         </svg>
                     </a>
-                    <a href="#!" className="mr-9 text-gray-800">
+                    <a href="#!" className="mr-9 text-white">
                         <svg
                             aria-hidden="true"
                             focusable="false"
@@ -90,7 +90,7 @@ const Footer : React.FC = () => {
                             ></path>
                         </svg>
                     </a>
-                    <a href="#!" className="text-gray-800">
+                    <a href="#!" className="text-white">
                         <svg
                             aria-hidden="true"
                             focusable="false"
@@ -110,9 +110,8 @@ const Footer : React.FC = () => {
                 </div>
             </div>
 
-            <div className="text-center text-gray-700 p-4 bg-gray-300">
-                © 2021 Copyright:
-                <a className="text-gray-800" href="https://tailwind-elements.com/">Tailwind Elements</a>
+            <div className="text-center font-work text-gray-700 p-4 bg-amber-400">
+                <p className="text-gray-800">  © 2022 Copyright : Coding Pals</p>
             </div>
         </footer>
     </>);

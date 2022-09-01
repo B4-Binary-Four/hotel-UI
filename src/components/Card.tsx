@@ -1,12 +1,12 @@
 import React from "react";
-import { Card as CBox, Button} from "flowbite-react";
+import { Card as CBox} from "flowbite-react";
 
 
 
-const Card:React.FC <{title:any,description:string,price:number,reduction:number,imageSrc:string}> = (props)  =>{
+const Card:React.FC <{title:string,description:string,price:number,reduction:number,imageSrc:string}> = (props)  =>{
     const {title,description,price,reduction,imageSrc} = props;
     return (<>
-        <div className="max-w-xs md:max-w-sm mx-auto my-3 shadow-sm hover:shadow-xl">
+        <div className="max-w-sm md:max-w-sm mx-auto my-3 shadow-sm hover:shadow-xl hover:scale-105">
                 <CBox imgSrc={imageSrc}>
                     <h5 className="text-xl text-center font-work tracking-tight text-gray-900 dark:text-white">
                         {title.toUpperCase()}
@@ -21,9 +21,6 @@ const Card:React.FC <{title:any,description:string,price:number,reduction:number
                             </span>
                         </li>
                     </strong>
-                    <span className="w-full flex justify-center items-center">
-                        <Button pill={true} >Réserver</Button>
-                    </span>
                 </CBox>
             </div>
     </>);

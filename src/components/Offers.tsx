@@ -21,12 +21,12 @@ const Offers : React.FC = () => {
             }).catch((err) => {
                 console.log(err);
             })
-        }, [results, data, setResults]
+        }, [results, setResults]
     )
 
     return (<>
         <section className={"w-full bg-gray-100 md:pb-5"} id="offers">
-            <div className={"text-center mb-5 pt-4 uppercase text-xl md:text-2xl font-fair"} >Nos offres</div>
+            <div className={"text-center mb-5 pt-6 uppercase text-xl md:text-2xl font-fair"} >Nos offres</div>
             <div className={"items-center flex flex-col md:flex-row md:justify-evenly"} >
                 {results.slice(0,3).map((item,index)=>(
                     <Card imageSrc={pics[index]} title={item.categoryName} description={desc[index]} price={item.price+1000} reduction={item.price}/>
